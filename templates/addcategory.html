@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block title %}ADD Categories {% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+	<h1>ADD Categories</h1>
+	<div class="adding">
+		<form method="post" action="{{url_for('newCategory')}}">
+			<div class="form-group">
+				<label for="title">Name of Category</label>
+				<input class="form-control" name="title" required>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-info">ADD</button>
+			</div>
+		</form>
+	</div>
+{% endblock %}
+

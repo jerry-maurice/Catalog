@@ -1,0 +1,12 @@
+{% extends "main.html" %}
+{% block title %}Login {% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+	<div class="text-center">
+		<h1>Welcome to Catalog, {{login_session['username']}}</h1>
+		<img src="{{login_session['picture']}}" class="rounded-circle" height="100px">
+	</div>
+{% endblock %}
+

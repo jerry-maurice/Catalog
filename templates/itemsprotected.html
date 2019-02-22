@@ -1,0 +1,59 @@
+{% extends "main.html" %}
+{% block title %}Items {% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+<div class="flash">
+	{% with messages = get_flashed_messages() %}
+	{% if messages %}
+	<ul>
+	{% for message in messages %}
+	<li> <strong> {{ message }} </strong> </li>
+	{% endfor %}
+	</ul>
+	{% endif %}
+	{% endwith %}
+</div>
+<div class="row">
+	<section class="col-md-4">
+		<div class="card" style="width: 18rem;">
+		  <div class="card-header alert-primary">
+			Categories
+		  </div>
+			<ul class="list-group">
+				{% for i in categories %}
+			   <li class="list-group-item d-flex justify-content-between align-items-center">
+				  {{i.name}}
+				  <span class="badge badge-primary badge-pill">
+					  <a href="{{url_for('viewCategoryItems',category_id=i.id)}}"><img src="{{url_for('static', filename='images/lookup.png')}}" height="20" alt="view"></a>
+				   </span>
+			   </li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+	<section class="col-md-8">
+		<div class="card">
+		  <div class="card-header alert-success">
+			{{category.name}}
+			<span class="badge badge-pill">
+				  <a href="{{url_for('addCategoryItems',category_id=category.id)}}"><img src="{{url_for('static', filename='images/add2.ico')}}" height="20" alt="add new category"></a>
+			</span>
+		  </div>
+			<ul class="list-group">
+				{% for i in items %}
+			   <li class="list-group-item d-flex justify-content-between align-items-center">
+				  {{i.name}}
+				  <span class="badge badge-success badge-pill">
+					  <a href="{{url_for('viewDetailedItem',category_id=i.category_id,item_id=i.id)}}"><img src="{{url_for('static', filename='images/lookup.png')}}" height="20" alt="view"></a>
+					  <a href="{{url_for('editCategoryItems',category_id=i.category_id,item_id = i.id)}}"><img src="{{url_for('static', filename='images/edit.png')}}" height="20" alt="view"></a>
+					  <a href="{{url_for('deleteCategoryItems',category_id=i.category_id,item_id = i.id)}}"><img src="{{url_for('static', filename='images/delete.png')}}" height="20" alt="view"></a>
+				   </span>
+			   </li>
+				{% endfor %}
+			</ul>
+		</div>
+	</section>
+</div>
+{% endblock %}

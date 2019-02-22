@@ -1,0 +1,27 @@
+{% extends "main.html" %}
+{% block title %}ADD Items {% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+	<h1>ADD Item</h1>
+	<div class="adding">
+		<form method="post" action="{{url_for('addCategoryItems',category_id=category_id)}}">
+			<div class="form-group">
+				<label for="title">Name of Item</label>
+				<input class="form-control" name="nameitems" required>
+			</div>
+			<div class="form-group">
+				<label for="">Description</label>
+				<textarea class="form-control" name="description" rows="4">
+				
+				</textarea>
+			</div>
+			<div class="form-group">
+				<button type="submit" class="btn btn-info">ADD</button>
+			</div>
+		</form>
+	</div>
+{% endblock %}
+
+

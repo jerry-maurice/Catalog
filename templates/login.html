@@ -1,0 +1,59 @@
+<!doctype html>
+<html>
+	<head>
+		<!-- Required meta tags -->
+		<meta charset="utf-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+		<!-- Bootstrap CSS -->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.0/css/bootstrap.min.css" integrity="sha384-PDle/QlgIONtM1aqA2Qemk5gPOE7wFq8+Em+G/hmo5Iq0CCmYZLv3fVRDJ4MMwEA" crossorigin="anonymous">
+		<link rel="stylesheet" type="text/css" href="{{url_for('static',filename='style.css')}}">
+		<title>Login -Catalog</title>
+   		<script src="//ajax.googleapis.com/ajax/libs/jquery/1.8.2/jquery.min.js"></script>
+		<script src="//apis.google.com/js/platform.js?onload=start"> </script>
+	</head>
+	<body>
+		<div id="signinButton" class="text-center">
+			<img class="mb-4" src="{{url_for('static', filename='images/sport.png')}}" alt="catalog" width="112" size="172">
+			<h1 class="h3 mb-3 font-weight-normal">Please sign in</h1>
+			<span class="g-signin"
+				  data-scope="openid email"
+				  data-clientid="729428925096-psov9uap46a44t5j1mh5rfvksslm6nmu.apps.googleusercontent.com"
+				  data-redirecturi="postmessage"
+				  data-accesstype="offline"
+				  data-cookiepolicy="single_host_origin"
+				  data-callback="signInCallback"
+				  data-approvalprompt="force"></span>
+		</div>
+		<div id="result"></div>
+		<script>
+			function signInCallback(authResult) {
+			  if (authResult['code']) {
+				// Hide the sign-in button now that the user is authorized
+				$('#signinButton').attr('style', 'display: none');
+				// Send the one-time-use code to the server, if the server responds, write a 'login successful' message to the web page and then redirect back to the main restaurants page
+				$.ajax({
+				  type: 'POST',
+				  url: '/gconnect?state={{STATE}}',
+				  processData: false,
+				  data: authResult['code'],
+				  contentType: 'application/octet-stream; charset=utf-8',
+				  success: function(result) {
+					// Handle or verify the server response if necessary.
+					if (result) {
+					  $('#result').html(result+'<div class="text-center">Login Successful!</br>'+'</br>Redirecting...</div>')
+					 setTimeout(function() {
+					  window.location.href = "/categories";
+					 }, 4000);
+
+				  } else if (authResult['error']) {
+				console.log('There was an error: ' + authResult['error']);
+			  } else {
+					$('#result').html('Failed to make a server-side call. Check your configuration and console.');
+					 }
+				  }
+
+			  }); } }
+		</script>
+	</body>
+</html>
+

@@ -1,0 +1,20 @@
+{% extends "main.html" %}
+{% block title %}Delete Category {% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+	<h1>Detete Category</h1>
+	<div class="adding">
+		<form action="{{url_for('deleteCategory',category_id=category.id)}}" method="post">
+			<div class="card">
+				<div class="card-body">
+					<p class="card-text">Are you sure you want to delete <strong><em>{{category.name}}</em></strong></p>
+				</div>
+				<div class="card-footer">
+					<input type="submit" name="deleteCategory">
+				</div>
+			</div>
+		</form>
+	</div>
+{% endblock %}

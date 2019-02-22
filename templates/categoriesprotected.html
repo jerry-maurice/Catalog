@@ -1,0 +1,36 @@
+{% extends "main.html" %}
+{% block title %}Categories{% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+	<div class="flash">
+		{% with messages = get_flashed_messages() %}
+		{% if messages %}
+		<ul>
+		{% for message in messages %}
+		<li> <strong> {{ message }} </strong> </li>
+		{% endfor %}
+		</ul>
+		{% endif %}
+		{% endwith %}
+	</div>
+	<h1>Categories
+		<span class="badge badge-pill">
+			  <a href="{{url_for('newCategory')}}"><img src="{{url_for('static', filename='images/add.png')}}" height="40" alt="add new category"></a>
+		</span>
+	</h1>
+	<ul class="list-group">
+		{% for i in categories %}
+	   <li class="list-group-item d-flex justify-content-between align-items-center">
+		  {{i.name}}
+		  <span class="badge badge-primary badge-pill">
+			  <a href="{{url_for('viewCategoryItems',category_id=i.id)}}"><img src="{{url_for('static', filename='images/lookup.png')}}" height="20" alt="view"></a>
+			  <a href="{{url_for('editingCategory',category_id=i.id)}}"><img src="{{url_for('static', filename='images/edit.png')}}" height="20" alt="view"></a>
+			  <a href="{{url_for('deleteCategory',category_id=i.id)}}"><img src="{{url_for('static', filename='images/delete.png')}}" height="20" alt="view"></a>
+		   </span>
+	   </li>
+		{% endfor %}
+	</ul>
+{% endblock %}
+	

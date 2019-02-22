@@ -1,0 +1,14 @@
+@charset "UTF-8";
+/* CSS Document */
+/*footer*/
+body {
+  height: 100%;
+}
+#footer-content{
+	color: #FFFFFF;
+	font-family: "Lucida Grande", "Lucida Sans Unicode", "Lucida Sans", "DejaVu Sans", Verdana, "sans-serif";
+	font-weight: bold;
+}
+#signinButton>h1{
+	color:#980002;
+}

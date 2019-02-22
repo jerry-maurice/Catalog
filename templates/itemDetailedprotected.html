@@ -1,0 +1,14 @@
+{% extends "main.html" %}
+{% block title %}Item Detailed {% endblock %}
+{% block header %}
+	{% include "headerlogin.html" %}
+{% endblock %}
+{% block content %}
+	<div class="card text-center text-white bg-success mb-3">
+	  <div class="card-header">Description</div>
+	  <div class="card-body">
+		<h5 class="card-title">{{item.name}}</h5>
+		<p class="card-text">{{item.description}}</p>
+	  </div>
+	</div>
+{% endblock %}
